@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="scripts/jquery.js"></script>
+</head>
+<body>
+<br>
+<button onclick="turnON()">Turn ON</button>
+<button onclick="turnOFF()">Turn OFF</button>
+<script>
+    var THING_TOKEN = "XXXXX";
+	function turnON() {
+		var object = {
+						"values": [
+						{
+							"key": "air",
+							"value": "1",
+							"datetime": "NOW()"
+						}
+					]
+		}
+		$( document ).ready(function() {
+			$.ajax({
+					type: 'POST',
+					url: 'https://api.thethings.io/v2/things/'+THING_TOKEN,
+					headers: {
+								"Content-Type": "application/json"
+							 },
+					data: JSON.stringify(object),
+					dataType: "json"				  
+			});		
+		});	
+	}	
+	function turnOFF() {	
+		var object = {
+						"values": [
+						{
+							"key": "air",
+							"value": "0",
+							"datetime": "NOW()"
+						}
+					]
+		}
+		$( document ).ready(function() {
+			$.ajax({
+					type: 'POST',
+					url: 'https://api.thethings.io/v2/things/'+THING_TOKEN,
+					headers: {
+								"Content-Type": "application/json"
+							 },
+					data: JSON.stringify(object),
+					dataType: "json"				  
+			});		
+		});	
+	}	
+</script>
+</body>
+</html>
